@@ -1,0 +1,25 @@
+<a href="/people/cadastro">Cadastrar Novo Pessoa</a>
+<a href="/people/cadastro_departamento">Cadastrar Novo departamento</a>
+<a href="/people/cadastro_cargo">Cadastrar Novo Cargo</a>
+<br>
+{% load static %}
+{% if lista %}
+	<ul>
+	{% for departamento in lista %}
+		<li>
+            <a href="{% url 'detalhar_departamento' departamento.id %}">{{departamento.descricao}}</a>
+			<a href="{% url 'editar_departamento' departamento.id %}">
+				<img src="{% static 'editar.png' %}" width="20" height="20">
+			</a>
+
+			<a href="{% url 'excluir_departamento' departamento.id %}">
+				<img src="{% static 'excluir.png' %}" width="20" height="20">
+			</a>
+		</li>
+	{% endfor %}
+	</ul>
+
+{% else %}
+	<p>Não há departamento cadastrado</p>
+{% endif %}
+<a href="javascript:history.back()">Go Back</a>
